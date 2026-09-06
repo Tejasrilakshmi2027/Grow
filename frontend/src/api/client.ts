@@ -4,7 +4,8 @@ import {
   DemoShockResponse
 } from '../types';
 
-const API_BASE = '/api';
+const rawBase = import.meta.env.VITE_API_URL;
+const API_BASE = rawBase ? (rawBase.endsWith('/api') ? rawBase : `${rawBase.replace(/\/$/, '')}/api`) : '/api';
 
 class ApiClient {
   private getAuthHeader(): Record<string, string> {

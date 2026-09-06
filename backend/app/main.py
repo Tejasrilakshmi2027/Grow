@@ -24,17 +24,24 @@ app = FastAPI(
 )
 
 # Configure CORS
-frontend_origins = ["http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:5173", "http://127.0.0.1:5173"]
-if settings.ENVIRONMENT.lower() == "production":
-    raw_origins = os.getenv("CORS_ORIGINS") or os.getenv("FRONTEND_URL")
-    if raw_origins:
-        frontend_origins = [o.strip() for o in raw_origins.split(",") if o.strip() and o.strip() != "*"]
-    else:
-        frontend_origins = ["http://localhost:3000"]
+frontend_origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+raw_origins = os.getenv("CORS_ORIGINS") or os.getenv("FRONTEND_URL")
+if raw_origins:
+    for o in raw_origins.split(","):
+        cleaned = o.strip()
+        if cleaned and cleaned != "*" and cleaned not in frontend_origins:
+            frontend_origins.append(cleaned)
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=frontend_origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
