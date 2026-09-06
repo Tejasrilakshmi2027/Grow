@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#090D16] text-slate-100 font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+.glass-card {
+  background: rgba(19, 26, 41, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.glass-card-hover:hover {
+  border-color: rgba(99, 102, 241, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.15);
+}
+
+/* Attention level glow indicators */
+.badge-high {
+  background: rgba(239, 68, 68, 0.15);
+  color: #F87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-medium {
+  background: rgba(245, 158, 11, 0.15);
+  color: #FBBF24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-low {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-normal {
+  background: rgba(107, 114, 128, 0.15);
+  color: #9CA3AF;
+  border: 1px solid rgba(107, 114, 128, 0.3);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090D16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1A2338;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2E3D5E;
+}
